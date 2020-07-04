@@ -5,15 +5,12 @@ local worldTable = {}
 local worldDirectory = "tiledFiles/"
 local worldFileName = "world_1"
 
-function checkIfWorldFileAndCreateScript()
-  if love.filesystem.getInfo(worldDirectory .. worldFileName .. ".world") then
-    print(worldDirectory .. worldFileName .. ".world" .. " file exists")
-    local worldToLuaScript = io.open("worldTextData.lua","w")
-    worldToLuaScript:close()
-  end
+function CreateScript()
+  local worldToLuaScript = io.open("worldTextData.lua","w")
+  worldToLuaScript:close()
 end
 
-checkIfWorldFileAndCreateScript()
+CreateScript()
 
 -- read the world json file of tiled and return his content as a string
 function readAllWorldFile(file)
