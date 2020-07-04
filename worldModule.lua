@@ -12,6 +12,7 @@ function checkIfWorldFileAndCreateScript()
     worldToLuaScript:close()
   end
 end
+
 checkIfWorldFileAndCreateScript()
 
 -- read the world json file of tiled and return his content as a string
@@ -40,31 +41,24 @@ end
 compareAndSubstituteStrings()
 
 local removeVarQuotes = {"maps", "onlyShowAdjacentMaps", "type", "fileName", "height", "width", "x", "y"}
-local removePatternVarQuotes = {"patterns", "regexp", "multiplierX", "multiplierY", "offsetX", "offsetY"} -- lua is not compatible with POSIX regexp !!
-
 for k, v in ipairs(removeVarQuotes) do
   match = '"' ..v .. '"'
-  i, j = string.find(TextContent, match)
   TextContent = string.gsub(TextContent, match, v .. " ")
 end
 
+local removePatternVarQuotes = {"patterns", "regexp", "multiplierX", "multiplierY", "offsetX", "offsetY"} -- lua is not compatible with POSIX regexp !!
 for k, v in ipairs(removePatternVarQuotes) do
   match = '"' ..v .. '"'
-  i, j = string.find(TextContent, match)
   TextContent = string.gsub(TextContent, match, v .. " ")
 end
-
 
 function addReturnString()
   local intitiateData = io.open("worldTextData.lua","w")
   intitiateData:write("return ")
   intitiateData:close()
 end
-addReturnString()
 
---remove empty space to avoid having a bad lua table
---TextContent = TextContent:gsub("%s+", "")
---TextContent = string.gsub(TextContent, "%s+", "")
+addReturnString()
 
 local finishedToParse = false
 local worldJsonToLua = nil
@@ -76,15 +70,9 @@ end
   
 writeToWorldTextData()
 
-
-
-  local requireWorldData = require("worldTextData")
-
-  for k, v in pairs(requireWorldData.maps) do -- making a boolean  error when requiring if the worldTextData.lua file is not closed
-    print(requireWorldData.maps[k].fileName)
-  end
-
-
-
+local requireWorldData = require("worldTextData")
+for k, v in pairs(requireWorldData.maps) do -- making a boolean  error when requiring if the worldTextData.lua file is not closed
+  print(requireWorldData.maps[k].fileName)
+end
 
 return worldTable
