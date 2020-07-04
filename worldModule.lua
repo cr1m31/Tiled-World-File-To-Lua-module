@@ -1,4 +1,4 @@
--- read and change world files (required by the mapSearchInput module)
+-- read and change world files
 local worldTable = {}
 
 -- check if directory exists and create an empty worldTextData.lua
