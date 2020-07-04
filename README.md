@@ -16,3 +16,7 @@ Now, once you require this worldModule, it will convert and save a "worldTextDat
 in the same directory of your lua project. 
 
 Then, you can require this new module with lua code...
+
+You can also run this script from the windows cmd console,
+just need to have a tiledFiles folder with the world file in it.
+Then run the worldModule.lua from cmd.
