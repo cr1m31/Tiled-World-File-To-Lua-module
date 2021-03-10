@@ -10,7 +10,7 @@ local worldDirectory = "tiledFiles/"
 
 and here , specify the world file name without the .world extention
 local worldFileName = "world_1" 
-(not "world_1.world") .
+(not "world_1.world").
 
 Now, once you require this worldModule, it will convert and save a "worldTextData.lua" file
 in the same directory of your lua project. 
